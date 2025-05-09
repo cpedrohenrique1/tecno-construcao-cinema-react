@@ -1,30 +1,19 @@
 import './App.css'
-import Header from './components/Header'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {Outlet } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { Home } from './pages/Home';
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />
-  }
-]);
+import Header from './components/Header';
 
 function App() {
   return (
     <>
     <header>
-      <Header />
+      <Header/>
     </header>
     <main>
-      <RouterProvider router={router} />
+      <Outlet/>
     </main>
-    <footer>
-
-    </footer>
     </>
   )
 }

@@ -1,21 +1,23 @@
+import { Link } from "react-router-dom";
+
 function Header() {
     return (
         <>
             <ul className="nav justify-content-end container-fluid bg-dark">
                 <li className="nav-item">
-                    <a className="nav-link text-light" aria-current="page" href="#">Home</a>
+                    <Link to={"/"} className="nav-link text-light">Home</Link>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link text-light" href="#">Filmes</a>
+                    <Link to={"filmes"} className="nav-link text-light">Filmes</Link>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link text-light" href="#">Salas</a>
+                    <Link to={"salas"} className="nav-link text-light">Salas</Link>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link text-light" href="#">Cadastrar Sessões</a>
+                    <Link to={"cadastrar-sessoes"} className="nav-link text-light">Cadastrar Sessões</Link>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link text-light" href="#">Sessões</a>
+                    <Link to={"sessoes"} className="nav-link text-light">Sessões</Link>
                 </li>
             </ul>
         </>
