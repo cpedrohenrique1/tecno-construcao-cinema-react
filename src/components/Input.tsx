@@ -1,7 +1,9 @@
-export default function Input({type = "text", classes = "form-control", placeholder, id}: {type: string, classes: string, placeholder: string, id: string}) {
+import InputProps from "../interfaces/InputProps.interface";
+
+export default function Input(input: InputProps) {
     return (
         <>
-            <input type={type} className={classes} placeholder={placeholder} id={id} />
+            <input type={input.type} className={input.classes} placeholder={input.placeholder} id={input.id} />
         </>
     )
 }
