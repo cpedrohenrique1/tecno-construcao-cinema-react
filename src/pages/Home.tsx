@@ -11,12 +11,14 @@ export const Home = () => {
     dataEstreia: new Date(),
     id: 1
   };
+  const nomeBotao: string = "Comprar ingressos";
   return (
     <>
       <div className="container ">
-        <div className="row">
-          <Card filme={filme}/>
-        </div>
+          <div className="row">
+            <Card filme={filme} nomeBotao={nomeBotao}/>
+            <Card filme={filme} nomeBotao={nomeBotao}/>
+          </div>
       </div>
     </>
   )

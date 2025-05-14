@@ -1,11 +1,7 @@
 import { Filme } from "../interfaces/Filme.interface";
-import { Button } from "./Button";
+import Button from "./Button";
 
-interface CardProps {
-    filme: Filme
-}
-
-export function Card({filme}: CardProps) {
+export function Card({filme, nomeBotao = "Comprar ingressos"}: {filme: Filme, nomeBotao: string}) {
     return (
         <>
             <div className="col-12 col-sm-6 col-lg-4">
@@ -17,7 +13,7 @@ export function Card({filme}: CardProps) {
                         <p className="card-text"><strong>Classificação:</strong>{filme.classificacao}</p>
                         <p className="card-text"><strong>Duração:</strong>{filme.duracao}</p>
                         <p className="card-text"><strong>Data de Estreia:</strong>{filme.dataEstreia.toLocaleDateString()}</p>
-                        <Button id={filme.id.toString()} nome="Comprar Ingressos" />
+                        <Button id={filme.id.toString()} nome={nomeBotao} classes={"btn-primary"} />
                     </div>
                 </div>
             </div>

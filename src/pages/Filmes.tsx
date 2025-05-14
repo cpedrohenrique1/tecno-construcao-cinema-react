@@ -1,3 +1,6 @@
+import Button from "../components/Button";
+import Input from "../components/Input";
+
 export function Filmes() {
     return (
         <>
@@ -7,9 +10,7 @@ export function Filmes() {
                 <h3>Filmes</h3>
                 <div className="row">
                     <div className="col-12 col-sm-6 col-lg-4">
-                        <button id="btnNovo" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#idModalFilme">
-                            Adicionar Filme
-                        </button>
+                        <Button id={"btnNovo"} nome={"Adicionar Filme"} classes="btn-success" />
                     </div>
                 </div>
 
@@ -18,8 +19,8 @@ export function Filmes() {
                 <div className="row">
                     <div className="col-12 col-sm-6 col-lg-4">
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Digite o título do filme" id="buscaNomeFilme" />
-                            <button type="button" className="btn btn-primary" id="btnBuscarFilme">Buscar</button>
+                            <Input type={"text"} classes={"form-control"} placeholder={"Digite o título do filme"} id={"buscaNomeFilme"}/>
+                            <Button id={"btnBuscarFilme"} nome={"Buscar"} classes={"btn-primary"}/>
                         </div>
                     </div>
                 </div>

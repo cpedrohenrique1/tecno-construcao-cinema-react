@@ -1,7 +1,7 @@
-export function Button({ id, nome }: { id: string, nome: string }) {
+export default function Button({ id, nome, classes = "btn-primary" }: { id: string, nome: string, classes: string }) {
     return (
         <>
-            <button type="button" className="btn btn-primary" id={id}>{nome}</button>
+            <button type="button" className={"btn " + classes} id={id}>{nome}</button>
         </>
     );
 }
