@@ -1,19 +1,40 @@
 import Button from "../components/Button";
 import Input from "../components/Input";
+import { Filme } from "../interfaces/Filme.interface";
+import Table from "../interfaces/Table.interface";
 
 export function Filmes() {
+    let tableFilmes: Table<Filme>[] = [];
+    let filme: Filme[] = [];
+    
+    let film: Filme = {
+        classificacao: 4,
+        dataEstreia: Date.now().toString(),
+        descricao: "asd",
+        duracao: 123,
+        genero: "madeira",
+        id: 1,
+        titulo: "tias"
+    };
+    filme.push(
+        film
+    )
+    const info1: Table<Filme> = {
+        tituloTable: "Teste",
+        conteudoTable: filme
+    }
+    tableFilmes.push(info1)
+    console.log(tableFilmes);
     return (
         <>
             <div className="container">
-                <br />
-
                 <h3>Filmes</h3>
                 <div className="row">
                     <div className="col-12 col-sm-6 col-lg-4">
                         <Button id={"btnNovo"} nome={"Adicionar Filme"} classes="btn-success" />
                     </div>
                 </div>
-
+                
                 <br />
 
                 <div className="row">

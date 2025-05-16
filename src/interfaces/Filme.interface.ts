@@ -5,5 +5,5 @@ export interface Filme {
     classificacao: number,
     genero: string,
     duracao: number,
-    dataEstreia: Date,
+    dataEstreia: string,
 }
