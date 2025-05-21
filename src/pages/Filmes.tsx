@@ -1,30 +1,21 @@
 import Button from "../components/Button";
 import Input from "../components/Input";
+import Table from "../components/Table";
 import { Filme } from "../interfaces/Filme.interface";
-import Table from "../interfaces/Table.interface";
 
 export function Filmes() {
-    let tableFilmes: Table<Filme>[] = [];
-    let filme: Filme[] = [];
-    
     let film: Filme = {
-        classificacao: 4,
-        dataEstreia: Date.now().toString(),
+        classificacao: "L",
+        dataEstreia: new Date,
         descricao: "asd",
         duracao: 123,
         genero: "madeira",
         id: 1,
         titulo: "tias"
     };
-    filme.push(
-        film
-    )
-    const info1: Table<Filme> = {
-        tituloTable: "Teste",
-        conteudoTable: filme
-    }
-    tableFilmes.push(info1)
-    console.log(tableFilmes);
+    const arrayFilmes = [];
+    arrayFilmes.push(film);
+    arrayFilmes.push(film);
     return (
         <>
             <div className="container">
@@ -48,33 +39,7 @@ export function Filmes() {
 
                 <div className="col-12 table-responsive">
 
-                    <table className="table table-striped align-middle">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Titulo</th>
-                                <th scope="col">Genero</th>
-                                <th scope="col">Classificação</th>
-                                <th scope="col">Duração</th>
-                                <th scope="col">Data-Estréia</th>
-                                <th scope="col">Editar / Excluir</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>
-                                    <td>
-                                    </td>
-                                </th>
-                            </tr>
-                        </tbody>
-                    </table>
+                <Table movieData={arrayFilmes} headers={["ID", "Titulo", "Genero", "Classificação", "Duração", "Data-Estréia", "Editar / Excluir"]}/>
                 </div>
             </div>
         </>

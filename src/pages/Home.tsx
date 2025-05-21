@@ -4,7 +4,7 @@ import { Filme } from "../interfaces/Filme.interface"
 export const Home = () => {
   const filme: Filme = {
     titulo: "a era do gelo",
-    classificacao: 13,
+    classificacao: "13",
     descricao: "Um esquilo vai comer uma noz e quebra o gelo",
     duracao: 130,
     genero: "Adulto",
@@ -15,6 +15,7 @@ export const Home = () => {
   return (
     <>
       <div className="container ">
+        <br/>
           <div className="row">
             <Card filme={filme} nomeBotao={nomeBotao}/>
             <Card filme={filme} nomeBotao={nomeBotao}/>

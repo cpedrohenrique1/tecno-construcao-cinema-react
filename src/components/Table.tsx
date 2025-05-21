@@ -1,21 +1,38 @@
-import TableProps from "../interfaces/TableProps.interface";
+import { Filme } from "../interfaces/Filme.interface";
+import Button from "./Button";
 
-export default function Table(infos: Map<string, string>) {
-    const array: 
+export default function Table({movieData, headers} : {movieData: Filme[], headers: string[]}) {
+    const tabelaFilmes = [];
+    for (const item of movieData){
+        tabelaFilmes.push(
+            <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.titulo}</td>
+                <td>{item.genero}</td>
+                <td>{item.classificacao}</td>
+                <td>{item.duracao}</td>
+                <td>{item.dataEstreia.toDateString()}</td>
+                <td><Button id={String(item.id)} nome={"Editar"} classes={"btn-primary"}/></td>
+            </tr>
+        )
+    }
+    const tabelaHeaders = [];
+    for (const item of headers) {
+        tabelaHeaders.push(
+            <th>{item}</th>
+        )
+    }
     return (
         <>
             <div className="col-12 table-responsive">
                 <table className="table table-striped align-middle">
                     <thead>
-                        <tr>
-                            {
-                                
-                            }
-                        </tr>
+                        <tr>{tabelaHeaders}</tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        </tr>
+                        {
+                            tabelaFilmes
+                        }
                     </tbody>
                 </table>
             </div>

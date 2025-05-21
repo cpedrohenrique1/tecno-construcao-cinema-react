@@ -2,8 +2,8 @@ export interface Filme {
     id: number,
     titulo: string,
     descricao: string,
-    classificacao: number,
+    classificacao: string,
     genero: string,
     duracao: number,
-    dataEstreia: string,
+    dataEstreia: Date,
 }
