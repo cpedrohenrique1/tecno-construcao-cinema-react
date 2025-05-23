@@ -1,4 +1,4 @@
-export interface Filme {
+export interface FilmeInterface {
     id: number,
     titulo: string,
     descricao: string,
@@ -6,4 +6,18 @@ export interface Filme {
     genero: string,
     duracao: number,
     dataEstreia: Date,
+    setId(id: number): void,
+    setTitulo(titulo: string): void,
+    setDescricao(descricao: string): void,
+    setClassificacao(classificacao: string): void,
+    setGenero(genero: string): void,
+    setDuracao(duracao: number): void,
+    setDataEstreia(dataEstreia: Date): void
+    getId(): number, 
+    getTitulo(): string,
+    getDescricao(): string,
+    getClassificacao(): string,
+    getGenero(): string,
+    getDuracao(): number,
+    getDataEstreia(): Date,
 }
