@@ -1,7 +1,7 @@
-import { Filme } from "../interfaces/Filme.interface";
+import { FilmeInterface } from "../interfaces/Filme.interface";
 import Button from "./Button";
 
-export default function Table({movieData, headers} : {movieData: Filme[], headers: string[]}) {
+export default function Table({movieData, headers} : {movieData: FilmeInterface[], headers: string[]}) {
     const tabelaFilmes = [];
     for (const item of movieData){
         tabelaFilmes.push(
@@ -11,7 +11,7 @@ export default function Table({movieData, headers} : {movieData: Filme[], header
                 <td>{item.genero}</td>
                 <td>{item.classificacao}</td>
                 <td>{item.duracao}</td>
-                <td>{item.dataEstreia.toDateString()}</td>
+                <td>{item.dataEstreia.toLocaleDateString()}</td>
                 <td><Button id={String(item.id)} nome={"Editar"} classes={"btn-primary"}/></td>
             </tr>
         )

@@ -1,7 +1,7 @@
-import { Filme } from "../interfaces/Filme.interface";
+import { FilmeInterface } from "../interfaces/Filme.interface";
 import Button from "./Button";
 
-export function Card({filme, nomeBotao = "Comprar ingressos"}: {filme: Filme, nomeBotao: string}) {
+export function Card({filme, nomeBotao = "Comprar ingressos"}: {filme: FilmeInterface, nomeBotao: string}) {
     return (
         <>
             <div className="col-12 col-sm-6 col-lg-4">
@@ -9,10 +9,10 @@ export function Card({filme, nomeBotao = "Comprar ingressos"}: {filme: Filme, no
                     <div className="card-body">
                         <h5 className="card-title">{filme.titulo}</h5>
                         <p className="cart-text">{filme.descricao}</p>
-                        <p className="card-text"><strong>Gênero:</strong>{filme.genero}</p>
-                        <p className="card-text"><strong>Classificação:</strong>{filme.classificacao}</p>
-                        <p className="card-text"><strong>Duração:</strong>{filme.duracao}</p>
-                        <p className="card-text"><strong>Data de Estreia:</strong>{filme.dataEstreia.toLocaleDateString()}</p>
+                        <p className="card-text"><strong>Gênero: </strong>{filme.genero}</p>
+                        <p className="card-text"><strong>Classificação: </strong>{filme.classificacao}</p>
+                        <p className="card-text"><strong>Duração: </strong>{filme.duracao}</p>
+                        <p className="card-text"><strong>Data de Estreia: </strong>{filme.dataEstreia.toLocaleDateString()}</p>
                         <Button id={filme.id.toString()} nome={nomeBotao} classes={"btn-primary"} />
                     </div>
                 </div>

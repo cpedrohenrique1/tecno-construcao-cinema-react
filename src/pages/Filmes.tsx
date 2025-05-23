@@ -1,19 +1,12 @@
+import Filme from "../classes/Filme";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import Table from "../components/Table";
-import { Filme } from "../interfaces/Filme.interface";
+import { FilmeInterface } from "../interfaces/Filme.interface";
 
 export function Filmes() {
-    let film: Filme = {
-        classificacao: "L",
-        dataEstreia: new Date,
-        descricao: "asd",
-        duracao: 123,
-        genero: "madeira",
-        id: 1,
-        titulo: "tias"
-    };
-    const arrayFilmes = [];
+    const film: FilmeInterface = new Filme(2, "Avatar", "Especie azul parecida com humanos mas grandes e tribais com conexao com a natureza", "Livre", "Ação", 130, new Date());
+    const arrayFilmes: FilmeInterface[] = [];
     arrayFilmes.push(film);
     arrayFilmes.push(film);
     return (
