@@ -15,7 +15,7 @@ export function Filmes() {
                 <h3>Filmes</h3>
                 <div className="row">
                     <div className="col-12 col-sm-6 col-lg-4">
-                        <Button id={"btnNovo"} nome={"Adicionar Filme"} classes="btn-success" />
+                        <Button id={"btnNovo"} nome={"Adicionar Filme"} classes="btn-success" action={() => {}} />
                     </div>
                 </div>
                 
@@ -25,7 +25,7 @@ export function Filmes() {
                     <div className="col-12 col-sm-6 col-lg-4">
                         <div className="input-group mb-3">
                             <Input type={"text"} classes={"form-control"} placeholder={"Digite o título do filme"} id={"buscaNomeFilme"}/>
-                            <Button id={"btnBuscarFilme"} nome={"Buscar"} classes={"btn-primary"}/>
+                            <Button id={"btnBuscarFilme"} nome={"Buscar"} classes={"btn-primary"} action={() => {}}/>
                         </div>
                     </div>
                 </div>

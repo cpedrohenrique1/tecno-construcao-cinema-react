@@ -12,7 +12,7 @@ export default function Salas() {
             <h1>Salas</h1>
             <div className="row">
                 <div className="col-12 col-sm-6 col-lg-4">
-                    <Button id={"btnNovo"} nome={"Adicionar Sala"} classes="btn-success" />
+                    <Button id={"btnNovo"} nome={"Adicionar Sala"} classes="btn-success" action={(): void=>{}} />
                 </div>
             </div>
 
@@ -22,7 +22,7 @@ export default function Salas() {
                 <div className="col-12 col-sm-6 col-lg-4">
                     <div className="input-group mb-3">
                         <Input type={"text"} classes={"form-control"} placeholder={"Digite o título do filme"} id={"buscaNomeFilme"} />
-                        <Button id={"btnBuscarFilme"} nome={"Buscar"} classes={"btn-primary"} />
+                        <Button id={"btnBuscarFilme"} nome={"Buscar"} classes={"btn-primary"} action={(): void => {}} />
                     </div>
                 </div>
             </div>
