@@ -3,6 +3,7 @@ import App from "./App";
 import { Home } from "./pages/Home";
 import { ErrorPage } from "./pages/ErrorPage";
 import { Filmes } from "./pages/Filmes";
+import Salas from "./pages/Salas";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: "filmes",
         element: <Filmes/>
+      },
+      {
+        path: "salas",
+        element: <Salas/>
       }
     ]
   }
