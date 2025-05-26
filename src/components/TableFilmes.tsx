@@ -1,25 +1,26 @@
 import { FilmeInterface } from "../interfaces/Filme.interface";
 import Button from "./Button";
 
-export default function Table({movieData, headers} : {movieData: FilmeInterface[], headers: string[]}) {
-    const tabelaFilmes = [];
-    for (const item of movieData){
-        tabelaFilmes.push(
-            <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.titulo}</td>
-                <td>{item.genero}</td>
-                <td>{item.classificacao}</td>
-                <td>{item.duracao}</td>
-                <td>{item.dataEstreia.toLocaleDateString()}</td>
-                <td><Button id={String(item.id)} nome={"Editar"} classes={"btn-primary"}/></td>
-            </tr>
-        )
-    }
+export default function TableFilmes({ data, headers }: { data: FilmeInterface[], headers: string[] }) {
     const tabelaHeaders = [];
     for (const item of headers) {
         tabelaHeaders.push(
             <th>{item}</th>
+        )
+    }
+
+    const tabelaFilmes = [];
+    for (const item of data) {
+        tabelaFilmes.push(
+            <tr key={item.id}>
+                <td>{item.getId()}</td>
+                <td>{item.getTitulo()}</td>
+                <td>{item.getGenero()}</td>
+                <td>{item.getClassificacao()}</td>
+                <td>{item.getDuracao()}</td>
+                <td>{item.getDataEstreia().toLocaleDateString()}</td>
+                <td><Button id={String(item.id)} nome={"Editar"} classes={"btn-primary"} action={function (): void { }} /></td>
+            </tr>
         )
     }
     return (
