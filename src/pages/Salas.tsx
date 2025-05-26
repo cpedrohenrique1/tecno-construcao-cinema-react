@@ -1,7 +1,7 @@
 import Sala from "../classes/Sala";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import Table from "../components/Table";
+import TableSalas from "../components/TableSalas";
 import SalaInterface from "../interfaces/Sala.interface";
 
 export default function Salas() {
@@ -29,7 +29,7 @@ export default function Salas() {
 
             <div className="col-12 table-responsive">
 
-                <Table movieData={arraySalas} headers={["ID", "Titulo", "Genero", "Classificação", "Duração", "Data-Estréia", "Editar / Excluir"]} />
+                <TableSalas data={arraySalas} headers={["ID", "Nome", "Tipo", "Capacidade", "Editar / Excluir"]} />
             </div>
         </>
     )
