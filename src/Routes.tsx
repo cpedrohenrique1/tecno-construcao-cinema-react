@@ -4,7 +4,7 @@ import { Home } from "./pages/Home";
 import { ErrorPage } from "./pages/ErrorPage";
 import { Filmes } from "./pages/Filmes";
 import Salas from "./pages/Salas";
-import CadastrarSessoes from "./pages/Cadastrar-sessoes";
+import CadastrarSessoes from "./pages/CadastrarSessoes";
 
 export const router = createBrowserRouter([
   {
