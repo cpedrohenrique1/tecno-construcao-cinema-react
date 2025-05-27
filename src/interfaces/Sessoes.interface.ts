@@ -11,7 +11,6 @@ export default interface SessaoInterface{
     formato: string,
     
     getId(): number;
-    setId(id: number): void;
     getFilme(): FilmeInterface;
     setFilme(filme: FilmeInterface): void;
     getSala(): SalaInterface;

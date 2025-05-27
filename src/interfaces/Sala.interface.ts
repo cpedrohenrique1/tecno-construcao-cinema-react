@@ -3,7 +3,6 @@ export default interface SalaInterface {
     nome: string,
     capacidade: number,
     tipo: string,
-    setId(id: number): void,
     setNome(nome: string): void,
     setCapacidade(capacidade: number): void,
     setTipo(tipo: string): void,

@@ -6,7 +6,6 @@ export interface FilmeInterface {
     genero: string,
     duracao: number,
     dataEstreia: Date,
-    setId(id: number): void,
     setTitulo(titulo: string): void,
     setDescricao(descricao: string): void,
     setClassificacao(classificacao: string): void,

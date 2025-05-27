@@ -14,7 +14,7 @@ export default class Sessao implements SessaoInterface {
     formato: string;
 
     constructor(
-        id: number = 0,
+        id: number = Date.now(),
         filme: FilmeInterface = new Filme(),
         sala: SalaInterface = new Sala(),
         dataHora: Date = new Date(),
@@ -33,9 +33,6 @@ export default class Sessao implements SessaoInterface {
 
     getId(): number {
         return this.id;
-    }
-    setId(id: number): void {
-        this.id = id;
     }
     getFilme(): FilmeInterface {
         return this.filme;

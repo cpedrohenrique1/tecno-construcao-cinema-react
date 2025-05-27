@@ -10,7 +10,7 @@ export default class Filme implements FilmeInterface {
     dataEstreia: Date;
 
     constructor(
-        id: number = 0,
+        id: number = Date.now(),
         titulo: string = "",
         descricao: string = "",
         classificacao: string = "",
@@ -27,9 +27,6 @@ export default class Filme implements FilmeInterface {
         this.dataEstreia = dataEstreia;
     }
     
-    setId(id: number): void {
-        this.id = id;
-    }
     setTitulo(titulo: string): void {
         this.titulo = titulo;
     }

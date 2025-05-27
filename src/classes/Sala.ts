@@ -6,7 +6,7 @@ export default class Sala implements SalaInterface {
     capacidade: number;
     tipo: string;
     constructor(
-        id: number = 0,
+        id: number = Date.now(),
         nome: string = "",
         capacidade: number = 0,
         tipo: string = ""
@@ -15,9 +15,6 @@ export default class Sala implements SalaInterface {
         this.nome = nome;
         this.capacidade = capacidade;
         this.tipo = tipo;
-    }
-    setId(id: number): void {
-        this.id = id;
     }
     setNome(nome: string): void {
         this.nome = nome;
