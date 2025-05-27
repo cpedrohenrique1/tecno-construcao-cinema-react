@@ -13,6 +13,17 @@ export default class FilmeService {
     }
 
     setFilmesToLocalStorage(filmes: FilmeInterface[]): void {
+        let tamanhoArray: number = filmes.length;
+        for (let i = 0; i < tamanhoArray; i++) {
+            for (let j = 1; j < tamanhoArray; j++) {
+                if (i === j) continue;
+                if (filmes[i].getTitulo() === filmes[j].getTitulo()) {
+                    filmes.splice(j, 1);
+                    j--;
+                    tamanhoArray--;
+                }
+            }
+        }
         localStorage.setItem('filmes', JSON.stringify(filmes));
     }
 }
