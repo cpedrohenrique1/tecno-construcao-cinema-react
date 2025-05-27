@@ -4,6 +4,7 @@ import { Home } from "./pages/Home";
 import { ErrorPage } from "./pages/ErrorPage";
 import { Filmes } from "./pages/Filmes";
 import Salas from "./pages/Salas";
+import CadastrarSessoes from "./pages/Cadastrar-sessoes";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: "salas",
         element: <Salas/>
+      },
+      {
+        path:"cadastrar-sessoes",
+        element: <CadastrarSessoes/>
       }
     ]
   }
