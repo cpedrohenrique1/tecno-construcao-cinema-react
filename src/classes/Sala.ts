@@ -6,10 +6,10 @@ export default class Sala implements SalaInterface {
     capacidade: number;
     tipo: string;
     constructor(
-        id: number,
-        nome: string,
-        capacidade: number,
-        tipo: string
+        id: number = 0,
+        nome: string = "",
+        capacidade: number = 0,
+        tipo: string = ""
     ) {
         this.id = id;
         this.nome = nome;
