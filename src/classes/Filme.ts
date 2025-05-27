@@ -10,13 +10,13 @@ export default class Filme implements FilmeInterface {
     dataEstreia: Date;
 
     constructor(
-        id: number,
-        titulo: string,
-        descricao: string,
-        classificacao: string,
-        genero: string,
-        duracao: number,
-        dataEstreia: Date
+        id: number = 0,
+        titulo: string = "",
+        descricao: string = "",
+        classificacao: string = "",
+        genero: string = "",
+        duracao: number = 0,
+        dataEstreia: Date = new Date()
     ) {
         this.id = id;
         this.titulo = titulo;
