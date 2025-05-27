@@ -33,7 +33,7 @@ export function Filmes() {
                                     <Input type={"text"} classes={"form-control"} placeholder={"Digite a classificação do filme"} id={"classificacaoFilme"} />
                                 </div>
                                 <div className="mb-3">
-                                    <Input type={"text"} classes={"form-control"} placeholder={"Digite a duração do filme (em minutos)"} id={"duracaoFilme"} />
+                                    <Input type={"number"} classes={"form-control"} placeholder={"Digite a duração do filme (em minutos)"} id={"duracaoFilme"} />
                                 </div>
                                 <div className="mb-3">
                                     <Input type={"date"} classes={"form-control"} placeholder={""} id={"dataEstreiaFilme"} />
@@ -41,7 +41,7 @@ export function Filmes() {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-primary" onClick={
+                            <Button id={""} nome={"Adicionar"} classes="btn-primary" action={
                                 () => {
                                     const titulo: string = (document.getElementById("tituloFilme") as HTMLInputElement).value;
                                     const descricao: string = (document.getElementById("descricaoFilme") as HTMLInputElement).value || "";
@@ -67,7 +67,7 @@ export function Filmes() {
                                     new FilmeService().setFilmesToLocalStorage(novosFilmes);
                                     setFilmes(new FilmeService().getFilmesFromLocalStorage());
                                 }
-                            }>Adicionar</button>
+                            }></Button>
                         </div>
                     </div>
                 </div>
