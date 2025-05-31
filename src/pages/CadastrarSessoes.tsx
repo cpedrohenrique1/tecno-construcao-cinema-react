@@ -72,6 +72,7 @@ export default function CadastrarSessoes() {
                 <div className="mb-3">
                   <select
                     id="filmeSelect"
+                    className="form-select"
                     onChange={(e) => {
                       const filmeEncontrada = arrayFilmes.find(
                         (filme) => filme.getId() === parseInt(e.target.value)
@@ -90,6 +91,7 @@ export default function CadastrarSessoes() {
                 </div>
                 <div className="mb-3">
                   <select
+                    className="form-select"
                     onChange={(e) => {
                       const salaEncontrada = arraySalas.find(
                         (sala) => sala.getId() === parseInt(e.target.value)
@@ -105,23 +107,6 @@ export default function CadastrarSessoes() {
                     </option>
                     {optSalas}
                   </select>
-                </div>
-                <div className="mb-3">
-                  <input
-                    type={"text"}
-                    className={"form-control"}
-                    placeholder={"Tipo da sala"}
-                    id={"tipoSala"}
-                    onChange={(e) => {
-                      const filmeAchado = arrayFilmes.find(
-                        (filme) => filme.getId() === parseInt(e.target.value)
-                      );
-                      if (filmeAchado) {
-                        sessao.setFilme(filmeAchado);
-                        setSessao(sessao);
-                      }
-                    }}
-                  />
                 </div>
                 <div className="mb-3">
                   <input
