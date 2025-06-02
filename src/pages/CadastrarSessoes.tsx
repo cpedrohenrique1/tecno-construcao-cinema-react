@@ -221,7 +221,7 @@ export default function CadastrarSessoes() {
           </div>
         </div>
         <div className="col-12 table-responsive">
-          <TableSessoes data={arraySessoes} headers={["ID", ""]} />
+          <TableSessoes data={arraySessoes} headers={["ID", "Título do filme", "Nome da sala", "Data e hora", "Formato da sessão", "Idioma", "Capacidade", "Ação"]} />
         </div>
       </div>
     </>
