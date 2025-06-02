@@ -1,28 +1,8 @@
 import { FilmeInterface } from "../interfaces/Filme.interface";
 import Button from "./Button";
 
-export default function TableFilmes({ data, headers }: { data: FilmeInterface[], headers: string[] }) {
-    const tabelaHeaders = [];
-    for (const item of headers) {
-        tabelaHeaders.push(
-            <th>{item}</th>
-        )
-    }
-
-    const tabelaFilmes = [];
-    for (const item of data) {
-        tabelaFilmes.push(
-            <tr key={item.id}>
-                <td>{item.getId()}</td>
-                <td>{item.getTitulo()}</td>
-                <td>{item.getGenero()}</td>
-                <td>{item.getClassificacao()}</td>
-                <td>{item.getDuracao()}</td>
-                <td>{item.getDataEstreia().toLocaleDateString()}</td>
-                <td><Button id={String(item.id)} nome={"Editar"} classes={"btn-primary"} action={function (): void { }} /></td>
-            </tr>
-        )
-    }
+export default function TableFilmes({ data, headers, onDelete }: { data: FilmeInterface[], headers: string[], onDelete: (item: FilmeInterface) => void }) {
+    const tabelaHeaders = headers.map((item) => <th key={item}>{item}</th>);
     return (
         <>
             <div className="col-12 table-responsive">
@@ -31,9 +11,20 @@ export default function TableFilmes({ data, headers }: { data: FilmeInterface[],
                         <tr>{tabelaHeaders}</tr>
                     </thead>
                     <tbody>
-                        {
-                            tabelaFilmes
-                        }
+                        {data.map((item) => (
+                            <tr key={item.id}>
+                                <td>{item.getId()}</td>
+                                <td>{item.getTitulo()}</td>
+                                <td>{item.getGenero()}</td>
+                                <td>{item.getClassificacao()}</td>
+                                <td>{item.getDuracao()}</td>
+                                <td>{item.getDataEstreia().toLocaleDateString()}</td>
+                                <td>
+                                    <Button id={String(item.getId())} nome={"Editar"} classes={"btn-primary"} action={() => { }} />
+                                    <Button id={String(item.getId())} nome={"Exluir"} classes={"btn-danger"} action={() => onDelete(item)} />
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

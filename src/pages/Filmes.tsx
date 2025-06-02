@@ -94,7 +94,15 @@ export function Filmes() {
 
                 <div className="col-12 table-responsive">
 
-                    <TableFilmes data={filmes} headers={["ID", "Titulo", "Genero", "Classificação", "Duração", "Data-Estréia", "Editar / Excluir"]} />
+                    <TableFilmes 
+                        data={filmes} 
+                        headers={["ID", "Titulo", "Genero", "Classificação", "Duração", "Data-Estréia", "Editar / Excluir"]} 
+                        onDelete={(item) => {
+                            const novosFilmes = filmes.filter(f => f.id !== item.id);
+                            new FilmeService().setFilmesToLocalStorage(novosFilmes);
+                            setFilmes(new FilmeService().getFilmesFromLocalStorage());
+                        }}
+                    />
                 </div>
             </div>
         </>
