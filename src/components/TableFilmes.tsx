@@ -20,7 +20,6 @@ export default function TableFilmes({ data, headers, onDelete }: { data: FilmeIn
                                 <td>{item.getDuracao()}</td>
                                 <td>{item.getDataEstreia().toLocaleDateString()}</td>
                                 <td>
-                                    <Button id={String(item.getId())} nome={"Editar"} classes={"btn-primary"} action={() => { }} />
                                     <Button id={String(item.getId())} nome={"Exluir"} classes={"btn-danger"} action={() => onDelete(item)} />
                                 </td>
                             </tr>

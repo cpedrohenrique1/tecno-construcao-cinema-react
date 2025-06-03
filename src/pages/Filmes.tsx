@@ -7,6 +7,7 @@ import { FilmeInterface } from "../interfaces/Filme.interface";
 import FilmeService from "../services/filmeService";
 
 export function Filmes() {
+    const filmeService = new FilmeService();
     const [filmes, setFilmes] = useState<FilmeInterface[]>(new FilmeService().getFilmesFromLocalStorage());
 
     return (
@@ -65,7 +66,7 @@ export function Filmes() {
 
                                     const novosFilmes = [...filmes, filme];
                                     new FilmeService().setFilmesToLocalStorage(novosFilmes);
-                                    setFilmes(new FilmeService().getFilmesFromLocalStorage());
+                                    setFilmes(filmeService.getFilmesFromLocalStorage());
                                 }
                             }></Button>
                         </div>
@@ -98,9 +99,9 @@ export function Filmes() {
                         data={filmes} 
                         headers={["ID", "Titulo", "Genero", "Classificação", "Duração", "Data-Estréia", "Editar / Excluir"]} 
                         onDelete={(item) => {
-                            const novosFilmes = filmes.filter(f => f.id !== item.id);
-                            new FilmeService().setFilmesToLocalStorage(novosFilmes);
-                            setFilmes(new FilmeService().getFilmesFromLocalStorage());
+                            const novosFilmes: FilmeInterface[] = filmes.filter(f => f.id !== item.id);
+                            filmeService.setFilmesToLocalStorage(novosFilmes);
+                            setFilmes(filmeService.getFilmesFromLocalStorage());
                         }}
                     />
                 </div>
