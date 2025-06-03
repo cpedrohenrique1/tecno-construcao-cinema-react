@@ -1,7 +1,7 @@
 import SalaInterface from "../interfaces/Sala.interface";
 import Button from "./Button";
 
-export default function TableSalas({ data, headers }: { data: SalaInterface[], headers: string[] }) {
+export default function TableSalas({ data, headers, onDelete }: { data: SalaInterface[], headers: string[], onDelete: (item: SalaInterface) => void }) {
     const tabelaHeaders = [];
     for (const item of headers) {
         tabelaHeaders.push(
@@ -17,7 +17,9 @@ export default function TableSalas({ data, headers }: { data: SalaInterface[], h
                 <td>{item.getNome()}</td>
                 <td>{item.getTipo()}</td>
                 <td>{item.getCapacidade()}</td>
-                <td><Button id={String(item.id)} nome={"Editar"} classes={"btn-primary"} action={function (): void { }} /></td>
+                <td><Button id={String(item.id)} nome={"Excluir"} classes={"btn-danger"} action={function (): void {
+                    onDelete(item);
+                } } /></td>
             </tr>
         )
     }

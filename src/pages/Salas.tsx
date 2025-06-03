@@ -76,7 +76,11 @@ export default function Salas() {
                     </div>
                 </div>
                 <div className="col-12 table-responsive">
-                    <TableSalas data={arraySalas} headers={["ID", "Nome", "Tipo", "Capacidade", "Editar / Excluir"]} />
+                    <TableSalas data={arraySalas} headers={["ID", "Nome", "Tipo", "Capacidade", "Editar / Excluir"]} onDelete={(item) => {
+                        const novasSalas: SalaInterface[] = arraySalas.filter(sala => sala.id != item.id);
+                        salaService.setSalasToLocalStorage(novasSalas);
+                        setSalas(salaService.getSalasFromLocalStorage());
+                    }} />
                 </div>
             </div>
         </>
