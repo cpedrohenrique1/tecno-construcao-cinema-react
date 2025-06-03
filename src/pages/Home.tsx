@@ -1,25 +1,25 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { Card } from "../components/Card"
-import { FilmeInterface } from "../interfaces/Filme.interface"
-import FilmeService from "../services/filmeService";
+import SessaoInterface from "../interfaces/Sessoes.interface";
+import SessaoService from "../services/sessaoService";
 
 export const Home = () => {
-  const filmeService = new FilmeService();
-  const filmes: FilmeInterface[] = filmeService.getFilmesFromLocalStorage();
+  const sessaoService: SessaoService = new SessaoService();
+  const sessoes: SessaoInterface[] = sessaoService.getSessoesFromLocalStorage();
   const nomeBotao: string = "Comprar ingressos";
   const navigate: NavigateFunction = useNavigate();
 
   const cards = [];
-  for (const filme of filmes) {
-    cards.push(
-      <Card filme={filme} nomeBotao={nomeBotao} acaoBotao={() => {
-            navigate(`/ingressos/${filme.getId()}`);
-          }} />
-    )
-  }
+  for (const sessao of sessoes) {
+        cards.push(
+            <Card sessao={sessao} nomeBotao={"Comprar ingressos"} acaoBotao={() => {
+                navigate(`/sessoes?sessaoId=${sessao.getId()}`);
+            }} />
+        )
+    }
   if (cards.length === 0) {
     cards.push(
-      <h2>Não há filmes salvos</h2>
+      <h2>Não há sessões salvas</h2>
     )
   }
   return (
