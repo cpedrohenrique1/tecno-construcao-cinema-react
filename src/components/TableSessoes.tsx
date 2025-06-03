@@ -1,7 +1,7 @@
 import SessaoInterface from "../interfaces/Sessoes.interface";
 import Button from "./Button";
 
-export default function TableSessoes({ data, headers }: { data: SessaoInterface[], headers: string[] }) {
+export default function TableSessoes({ data, headers, onDelete }: { data: SessaoInterface[], headers: string[], onDelete: (item: SessaoInterface) => void }) {
     const tabelaHeaders = [];
     for (const item of headers) {
         tabelaHeaders.push(
@@ -20,7 +20,9 @@ export default function TableSessoes({ data, headers }: { data: SessaoInterface[
                 <td>{item.getFormato()}</td>
                 <td>{item.getIdioma()}</td>
                 <td>{item.getPreco()}</td>
-                <td><Button id={String(item.id)} nome={"Editar"} classes={"btn-primary"} action={function (): void { }} /></td>
+                <td><Button id={String(item.id)} nome={"Excluir"} classes={"btn-danger"} action={() => {
+                    onDelete(item);
+                } } /></td>
             </tr>
         )
     }

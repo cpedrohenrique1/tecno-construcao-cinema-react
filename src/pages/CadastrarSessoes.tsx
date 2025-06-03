@@ -221,7 +221,11 @@ export default function CadastrarSessoes() {
           </div>
         </div>
         <div className="col-12 table-responsive">
-          <TableSessoes data={arraySessoes} headers={["ID", "Título do filme", "Nome da sala", "Data e hora", "Formato da sessão", "Idioma", "Capacidade", "Ação"]} />
+          <TableSessoes data={arraySessoes} headers={["ID", "Título do filme", "Nome da sala", "Data e hora", "Formato da sessão", "Idioma", "Capacidade", "Ação"]} onDelete={(item) => {
+            const updatedSessoes: SessaoInterface[] = arraySessoes.filter(sessao => sessao.getId() != item.getId());
+            sessaoService.setSessoesToLocalStorage(updatedSessoes);
+            setSessoes(updatedSessoes);
+          }} />
         </div>
       </div>
     </>
