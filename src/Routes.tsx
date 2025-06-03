@@ -5,6 +5,8 @@ import { ErrorPage } from "./pages/ErrorPage";
 import { Filmes } from "./pages/Filmes";
 import Salas from "./pages/Salas";
 import CadastrarSessoes from "./pages/CadastrarSessoes";
+import Sessoes from "./pages/Sessoes";
+
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path:"cadastrar-sessoes",
         element: <CadastrarSessoes/>
+      },
+      {
+        path: "sessoes",
+        element: <Sessoes/>
       }
     ]
   }
