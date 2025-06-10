@@ -21,7 +21,7 @@ export default function CadastrarSessoes() {
   const sessaoService = new SessaoService();
   const [sessao, setSessao] = useState<SessaoInterface>(new Sessao());
   const [arraySessoes, setSessoes] = useState<SessaoInterface[]>(
-    sessaoService.getSessoesFromLocalStorage()
+    sessaoService.getSessoesFromApi()
   );
 
   const optFilmes = [];
@@ -176,7 +176,7 @@ export default function CadastrarSessoes() {
                   ) {
                     arraySessoes.push(sessao);
                     sessaoService.setSessoesToLocalStorage(arraySessoes);
-                    setSessoes(sessaoService.getSessoesFromLocalStorage());
+                    setSessoes(sessaoService.getSessoesFromApi());
                     setSessao(new Sessao());
                   } else {
                     alert("Preencha todos os campos obrigatórios.");
