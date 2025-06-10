@@ -16,7 +16,7 @@ export default function CadastrarSessoes() {
   
   const filmeService = new FilmeService();
   const arrayFilmes: FilmeInterface[] =
-  filmeService.getFilmesFromLocalStorage();
+  filmeService.getFilmesFromApi();
   
   const sessaoService = new SessaoService();
   const [sessao, setSessao] = useState<SessaoInterface>(new Sessao());

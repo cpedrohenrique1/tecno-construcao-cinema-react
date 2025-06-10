@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Filme from "../classes/Filme";
 import Button from "../components/Button";
 import Input from "../components/Input";
@@ -8,7 +8,14 @@ import FilmeService from "../services/filmeService";
 
 export function Filmes() {
     const filmeService = new FilmeService();
-    const [filmes, setFilmes] = useState<FilmeInterface[]>(new FilmeService().getFilmesFromLocalStorage());
+    const [filmes, setFilmes] = useState<FilmeInterface[]>([]);
+
+    useEffect(() => {
+      filmeService.getFilmesFromApi().then(value => {
+        setFilmes(value);
+      })
+    }, []);
+    
 
     return (
         <>
@@ -66,7 +73,6 @@ export function Filmes() {
 
                                     const novosFilmes = [...filmes, filme];
                                     new FilmeService().setFilmesToLocalStorage(novosFilmes);
-                                    setFilmes(filmeService.getFilmesFromLocalStorage());
                                 }
                             }></Button>
                         </div>
