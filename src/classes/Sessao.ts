@@ -5,7 +5,7 @@ import Filme from "./Filme";
 import Sala from "./Sala";
 
 export default class Sessao implements SessaoInterface {
-    id: number;
+    id!: number;
     filme: FilmeInterface;
     sala: SalaInterface;
     dataHora: Date;
@@ -14,7 +14,6 @@ export default class Sessao implements SessaoInterface {
     formato: string;
 
     constructor(
-        id: number = Date.now(),
         filme: FilmeInterface = new Filme(),
         sala: SalaInterface = new Sala(),
         dataHora: Date = new Date(),
@@ -22,7 +21,6 @@ export default class Sessao implements SessaoInterface {
         idioma: string = "",
         formato: string = ""
     ) {
-        this.id = id;
         this.filme = filme;
         this.sala = sala;
         this.dataHora = dataHora;
@@ -31,6 +29,9 @@ export default class Sessao implements SessaoInterface {
         this.formato = formato;
     }
 
+    setId(id: number): void {
+        this.id = id;
+    }
     getId(): number {
         return this.id;
     }

@@ -12,11 +12,10 @@ import TableSessoes from "../components/TableSessoes";
 
 export default function CadastrarSessoes() {
   const salaService = new SalaService();
-  const arraySalas: SalaInterface[] = salaService.getSalasFromLocalStorage();
+  const arraySalas: SalaInterface[] = salaService.getSalasFromApi();
   
   const filmeService = new FilmeService();
-  const arrayFilmes: FilmeInterface[] =
-  filmeService.getFilmesFromApi();
+  const [arrayFilmes, setFilmes]: FilmeInterface[] = filmeService.getFilmesFromApi();
   
   const sessaoService = new SessaoService();
   const [sessao, setSessao] = useState<SessaoInterface>(new Sessao());
@@ -175,7 +174,7 @@ export default function CadastrarSessoes() {
                     sessao.formato
                   ) {
                     arraySessoes.push(sessao);
-                    sessaoService.setSessoesToLocalStorage(arraySessoes);
+                    sessaoService.addSessao(arraySessoes);
                     setSessoes(sessaoService.getSessoesFromApi());
                     setSessao(new Sessao());
                   } else {
@@ -223,7 +222,7 @@ export default function CadastrarSessoes() {
         <div className="col-12 table-responsive">
           <TableSessoes data={arraySessoes} headers={["ID", "Título do filme", "Nome da sala", "Data e hora", "Formato da sessão", "Idioma", "Capacidade", "Ação"]} onDelete={(item) => {
             const updatedSessoes: SessaoInterface[] = arraySessoes.filter(sessao => sessao.getId() != item.getId());
-            sessaoService.setSessoesToLocalStorage(updatedSessoes);
+            sessaoService.addSessao(updatedSessoes);
             setSessoes(updatedSessoes);
           }} />
         </div>
