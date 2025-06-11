@@ -20,6 +20,20 @@ export default class SessaoService {
         });
     }
 
+    async getSessaoById(id: number) {
+        const obj = await api.get(`sessoes/${id}`);
+        if (!obj || !obj.data) {
+            return null;
+        }
+        const sessao: SessaoInterface = obj.data;
+        if (!sessao) {
+            return null;
+        }
+        const filme: FilmeInterface = new Filme(sessao.filme.titulo, sessao.filme.descricao, sessao.filme.classificacao, sessao.filme.genero, sessao.filme.duracao, sessao.filme.dataEstreia);
+        const sala: SalaInterface = new Sala(sessao.sala.nome, sessao.sala.capacidade, sessao.sala.tipo);
+        return new Sessao(sessao.id, filme, sala, new Date(sessao.dataHora), sessao.preco, sessao.idioma, sessao.formato);
+    }
+
     async addSessao(sessao: SessaoInterface): Promise<void> {
         await api.post('sessoes', sessao);
     }
