@@ -1,4 +1,3 @@
-import { FilmeInterface } from "../interfaces/Filme.interface";
 import SessaoInterface from "../interfaces/Sessoes.interface";
 import Button from "./Button";
 

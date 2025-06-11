@@ -14,6 +14,7 @@ export default class Sessao implements SessaoInterface {
     formato: string;
 
     constructor(
+        id: number,
         filme: FilmeInterface = new Filme(),
         sala: SalaInterface = new Sala(),
         dataHora: Date = new Date(),
@@ -21,6 +22,7 @@ export default class Sessao implements SessaoInterface {
         idioma: string = "",
         formato: string = ""
     ) {
+        this.id = id;
         this.filme = filme;
         this.sala = sala;
         this.dataHora = dataHora;
