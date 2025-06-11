@@ -1,29 +1,30 @@
 import Sala from "../classes/Sala";
 import SalaInterface from "../interfaces/Sala.interface";
+import { api } from "./apiService";
 
 export default class SalaService {
 
-    getSalasFromLocalStorage(): SalaInterface[] {
-        const objLocalStorage = localStorage.getItem('salas');
-        if (objLocalStorage) {
-            const salaArray: SalaInterface[] = JSON.parse(objLocalStorage);
-            return salaArray.map(s => new Sala(s.id, s.nome, s.capacidade, s.tipo));
+    async getSalasFromApi(): Promise<SalaInterface[]> {
+        const obj = await api.get('salas');
+        const salaArray: SalaInterface[] = obj.data;
+        if (salaArray) {
+            return salaArray.map(s => {
+                const sala = new Sala();
+                sala.setId(s.id);
+                sala.setNome(s.nome);
+                sala.setCapacidade(s.capacidade);
+                sala.setTipo(s.tipo);
+                return sala;
+            });
         }
         return [];
     }
 
-    setSalasToLocalStorage(salas: SalaInterface[]): void {
-        let tamanhoArray: number = salas.length;
-        for (let i = 0; i < tamanhoArray; i++) {
-            for (let j = 1; j < tamanhoArray; j++) {
-                if (i === j) continue;
-                if (salas[i].getNome() === salas[j].getNome()) {
-                    salas.splice(j, 1);
-                    j--;
-                    tamanhoArray--;
-                }
-            }
-        }
-        localStorage.setItem('salas', JSON.stringify(salas));
+    async addSala(sala: SalaInterface): Promise<void> {
+        await api.post('salas', sala)
+    }
+
+    async deleteSala(id: number): Promise<void> {
+        await api.delete(`salas/${id}`);
     }
 }

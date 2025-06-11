@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import TableSalas from "../components/TableSalas";
@@ -8,7 +8,14 @@ import Sala from "../classes/Sala";
 
 export default function Salas() {
     const salaService: SalaService = new SalaService();
-    const [arraySalas, setSalas] = useState<SalaInterface[]>(salaService.getSalasFromLocalStorage());
+    const [arraySalas, setSalas] = useState<SalaInterface[]>([]);
+
+    useEffect(() => {
+      salaService.getSalasFromApi().then(value => {
+            setSalas(value);
+        })
+    }, [])
+    
 
     return (
         <>
@@ -43,15 +50,14 @@ export default function Salas() {
                                         return;
                                     }
                                     const sala: SalaInterface = new Sala(
-                                        Date.now(),
                                         nomeSala,
                                         capacidadeSala,
                                         tipoSala
                                     )
 
                                     const novasSalas: SalaInterface[] = [...arraySalas, sala];
-                                    salaService.setSalasToLocalStorage(novasSalas);
-                                    setSalas(salaService.getSalasFromLocalStorage());
+                                    salaService.addSala(sala);
+                                    setSalas(novasSalas);
                                 }
                             }></Button>
                         </div>
@@ -77,9 +83,8 @@ export default function Salas() {
                 </div>
                 <div className="col-12 table-responsive">
                     <TableSalas data={arraySalas} headers={["ID", "Nome", "Tipo", "Capacidade", "Editar / Excluir"]} onDelete={(item) => {
-                        const novasSalas: SalaInterface[] = arraySalas.filter(sala => sala.id != item.id);
-                        salaService.setSalasToLocalStorage(novasSalas);
-                        setSalas(salaService.getSalasFromLocalStorage());
+                        salaService.deleteSala(item.id);
+                        setSalas(arraySalas.filter(sala => sala.id != item.id));
                     }} />
                 </div>
             </div>

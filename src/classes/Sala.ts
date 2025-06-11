@@ -1,17 +1,15 @@
 import SalaInterface from "../interfaces/Sala.interface";
 
 export default class Sala implements SalaInterface {
-    id: number;
+    id!: number;
     nome: string;
     capacidade: number;
     tipo: string;
     constructor(
-        id: number = Date.now(),
         nome: string = "",
         capacidade: number = 0,
         tipo: string = ""
     ) {
-        this.id = id;
         this.nome = nome;
         this.capacidade = capacidade;
         this.tipo = tipo;
@@ -24,6 +22,9 @@ export default class Sala implements SalaInterface {
     }
     setTipo(tipo: string): void {
         this.tipo = tipo;
+    }
+    setId(id: number): void {
+        this.id = id;
     }
     getId(): number {
         return this.id;
