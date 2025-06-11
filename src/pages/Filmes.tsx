@@ -11,11 +11,10 @@ export function Filmes() {
     const [filmes, setFilmes] = useState<FilmeInterface[]>([]);
 
     useEffect(() => {
-      filmeService.getFilmesFromApi().then(value => {
-        setFilmes(value);
-      })
+        filmeService.getFilmesFromApi().then(value => {
+            setFilmes(value);
+        })
     }, []);
-    
 
     return (
         <>
@@ -62,7 +61,6 @@ export function Filmes() {
                                         return;
                                     }
                                     const filme: FilmeInterface = new Filme(
-                                        Date.now(),
                                         titulo,
                                         descricao,
                                         classificacao,
@@ -72,7 +70,9 @@ export function Filmes() {
                                     );
 
                                     const novosFilmes = [...filmes, filme];
-                                    new FilmeService().setFilmesToLocalStorage(novosFilmes);
+                                    filmeService.setFilmeToApi(filme).then(() => {
+                                        setFilmes(novosFilmes);
+                                    })
                                 }
                             }></Button>
                         </div>
@@ -94,20 +94,20 @@ export function Filmes() {
                     <div className="col-12 col-sm-6 col-lg-4">
                         <div className="input-group mb-3">
                             <Input type={"text"} classes={"form-control"} placeholder={"Digite o título do filme"} id={"buscaNomeFilme"} />
-                            <Button id={"btnBuscarFilme"} nome={"Buscar"} classes={"btn-primary"} action={() => { }} />
+                            <Button id={"btnBuscarFilme"} nome={"Buscar"} classes={"btn-primary"} action={() => {}} />
                         </div>
                     </div>
                 </div>
 
                 <div className="col-12 table-responsive">
 
-                    <TableFilmes 
-                        data={filmes} 
-                        headers={["ID", "Titulo", "Genero", "Classificação", "Duração", "Data-Estréia", "Editar / Excluir"]} 
+                    <TableFilmes
+                        data={filmes}
+                        headers={["ID", "Titulo", "Genero", "Classificação", "Duração", "Data-Estréia", "Editar / Excluir"]}
                         onDelete={(item) => {
-                            const novosFilmes: FilmeInterface[] = filmes.filter(f => f.id !== item.id);
-                            filmeService.setFilmesToLocalStorage(novosFilmes);
-                            setFilmes(filmeService.getFilmesFromLocalStorage());
+                            filmeService.deleteFilme(item.id).then(() => {
+                                setFilmes(filmes.filter(f => f.id !== item.id));
+                            })
                         }}
                     />
                 </div>

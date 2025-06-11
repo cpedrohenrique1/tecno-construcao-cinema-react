@@ -1,7 +1,7 @@
 import { FilmeInterface } from "../interfaces/Filme.interface";
 
 export default class Filme implements FilmeInterface {
-    id: number;
+    id!: number;
     titulo: string;
     descricao: string;
     classificacao: string;
@@ -10,7 +10,6 @@ export default class Filme implements FilmeInterface {
     dataEstreia: Date;
 
     constructor(
-        id: number = Date.now(),
         titulo: string = "",
         descricao: string = "",
         classificacao: string = "",
@@ -18,13 +17,20 @@ export default class Filme implements FilmeInterface {
         duracao: number = 0,
         dataEstreia: Date = new Date()
     ) {
-        this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
         this.classificacao = classificacao;
         this.genero = genero;
         this.duracao = duracao;
         this.dataEstreia = dataEstreia;
+    }
+
+    setId(id: number): void {
+        this.id = id;
+    }
+
+    getId(): number {
+        return this.id;
     }
     
     setTitulo(titulo: string): void {
@@ -44,9 +50,6 @@ export default class Filme implements FilmeInterface {
     }
     setDataEstreia(dataEstreia: Date): void {
         this.dataEstreia = dataEstreia;
-    }
-    getId(): number {
-        return this.id;
     }
     getTitulo(): string {
         return this.titulo;

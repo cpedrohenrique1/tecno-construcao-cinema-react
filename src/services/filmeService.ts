@@ -8,23 +8,39 @@ export default class FilmeService {
         const obj = await api.get('filmes');
         if (obj) {
             const filmesArray: Filme[] = obj.data;
-            return filmesArray.map(f => new Filme(f.id, f.titulo, f.descricao, f.classificacao, f.genero, f.duracao, new Date(f.dataEstreia)));
+            return filmesArray.map(f => {
+                const temp = new Filme(f.titulo, f.descricao, f.classificacao, f.genero, f.duracao, new Date(f.dataEstreia));
+                temp.setId(f.id);
+                return temp;
+            }
+        );
         }
         return [];
     }
 
-    setFilmesToLocalStorage(filmes: FilmeInterface[]): void {
-        let tamanhoArray: number = filmes.length;
-        for (let i = 0; i < tamanhoArray; i++) {
-            for (let j = 1; j < tamanhoArray; j++) {
-                if (i === j) continue;
-                if (filmes[i].getTitulo() === filmes[j].getTitulo()) {
-                    filmes.splice(j, 1);
-                    j--;
-                    tamanhoArray--;
-                }
-            }
+    async getFilmeById(id: number): Promise<FilmeInterface> {
+        const obj = await api.get(`/filmes/${id}`);
+        if (obj) {
+            const filmeData: FilmeInterface = obj.data;
+            const filme = new Filme(
+                filmeData.titulo,
+                filmeData.descricao,
+                filmeData.classificacao,
+                filmeData.genero,
+                filmeData.duracao,
+                new Date(filmeData.dataEstreia)
+            );
+            filme.setId(filmeData.id);
+            return filme;
         }
-        localStorage.setItem('filmes', JSON.stringify(filmes));
+        return new Filme("", "", "", "", 0, new Date());
+    }
+
+    async setFilmeToApi(filmes: FilmeInterface): Promise<void> {
+        await api.post('filmes', filmes);
+    }
+
+    async deleteFilme(id: number): Promise<void> {
+        await api.delete(`/filmes/${id}`);
     }
 }
