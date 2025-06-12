@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import SalaInterface from "../interfaces/Sala.interface";
@@ -9,19 +9,31 @@ import SessaoInterface from "../interfaces/Sessoes.interface";
 import SessaoService from "../services/sessaoService";
 import Sessao from "../classes/Sessao";
 import TableSessoes from "../components/TableSessoes";
+import Filme from "../classes/Filme";
+import Sala from "../classes/Sala";
 
 export default function CadastrarSessoes() {
   const salaService = new SalaService();
-  const arraySalas: SalaInterface[] = salaService.getSalasFromApi();
+  const [arraySalas, setSalas] = useState<SalaInterface[]>([]);
   
   const filmeService = new FilmeService();
-  const [arrayFilmes, setFilmes]: FilmeInterface[] = filmeService.getFilmesFromApi();
+  const [arrayFilmes, setFilmes] = useState<FilmeInterface[]>([]);
   
   const sessaoService = new SessaoService();
-  const [sessao, setSessao] = useState<SessaoInterface>(new Sessao());
-  const [arraySessoes, setSessoes] = useState<SessaoInterface[]>(
-    sessaoService.getSessoesFromApi()
-  );
+  const [sessao, setSessao] = useState<SessaoInterface>(new Sessao(0, new Filme("", "", "", "", 0, new Date()), new Sala("", 0, ""), new Date(), 0, "", ""));
+  const [arraySessoes, setSessoes] = useState<SessaoInterface[]>([]);
+  
+  useEffect(() => {
+    salaService.getSalasFromApi().then(value => {
+      setSalas(value);
+    });
+    filmeService.getFilmesFromApi().then(value => {
+      setFilmes(value);
+    });
+    sessaoService.getSessoesFromApi().then(value => {
+      setSessoes(value);
+    })
+  }, []);
 
   const optFilmes = [];
   for (const filme of arrayFilmes) {
@@ -174,9 +186,8 @@ export default function CadastrarSessoes() {
                     sessao.formato
                   ) {
                     arraySessoes.push(sessao);
-                    sessaoService.addSessao(arraySessoes);
-                    setSessoes(sessaoService.getSessoesFromApi());
-                    setSessao(new Sessao());
+                    sessaoService.addSessao(sessao);
+                    setSessao(new Sessao(0, new Filme("", "", "", "", 0, new Date()), new Sala("", 0, ""), new Date(), 0, "", ""));
                   } else {
                     alert("Preencha todos os campos obrigatórios.");
                   }
@@ -222,7 +233,7 @@ export default function CadastrarSessoes() {
         <div className="col-12 table-responsive">
           <TableSessoes data={arraySessoes} headers={["ID", "Título do filme", "Nome da sala", "Data e hora", "Formato da sessão", "Idioma", "Capacidade", "Ação"]} onDelete={(item) => {
             const updatedSessoes: SessaoInterface[] = arraySessoes.filter(sessao => sessao.getId() != item.getId());
-            sessaoService.addSessao(updatedSessoes);
+            sessaoService.deleteSessao(item.id);
             setSessoes(updatedSessoes);
           }} />
         </div>

@@ -1,3 +1,4 @@
+import CreateSessaoDto from "../classes/CreateSessaoDto";
 import Filme from "../classes/Filme";
 import Sala from "../classes/Sala";
 import Sessao from "../classes/Sessao";
@@ -35,6 +36,10 @@ export default class SessaoService {
     }
 
     async addSessao(sessao: SessaoInterface): Promise<void> {
-        await api.post('sessoes', sessao);
+        await api.post('sessoes', new CreateSessaoDto(sessao.getFilme().getId(), sessao.getSala().getId(), sessao.getDataHora(), sessao.getPreco(), sessao.getIdioma(), sessao.getFormato()));
+    }
+
+    async deleteSessao(id: number) {
+        return await api.delete(`/sessoes/${id}`);
     }
 }
