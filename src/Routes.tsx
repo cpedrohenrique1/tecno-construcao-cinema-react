@@ -6,6 +6,7 @@ import { Filmes } from "./pages/Filmes";
 import Salas from "./pages/Salas";
 import CadastrarSessoes from "./pages/CadastrarSessoes";
 import Sessoes from "./pages/Sessoes";
+import Ingressos from "./pages/Ingressos";
 
 
 export const router = createBrowserRouter([
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: "sessoes",
         element: <Sessoes/>
+      },
+      {
+        path: "ingressos",
+        element: <Ingressos/>
       }
     ]
   }

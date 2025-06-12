@@ -19,6 +19,9 @@ function Header() {
                 <li className="nav-item">
                     <Link to={"sessoes"} className="nav-link text-light">Sessões</Link>
                 </li>
+                <li className="nav-item">
+                    <Link to={"ingressos"} className="nav-link text-light">Ingressos</Link>
+                </li>
             </ul>
         </>
     );
